@@ -38,7 +38,7 @@ def list_products_per_tag(tag_id:int):
                 .join(ProductTag)
                 .join(Tag)
                 # .where(Tag.tag== tag.tag))
-                .where(Tag.tag_id== tag_id))
+                .where(Tag.tag_id == tag_id))
     product_list = [product.product_name for product in products]
     return f"Tag ID: {tag_id}  {product_list}"
 
@@ -60,7 +60,7 @@ def add_product_to_catalog(
         # Select the row that contains user id's 
     user_id= (User
               .select()
-              .where (User.user_id==user_id))
+              .where (User.user_id == user_id))
         # Create records in Product table   
     products = Product.create(
         product_owner=user_id,
@@ -85,27 +85,25 @@ def update_stock(product_id:int, new_quantity:int):
 
 # 6. Purchase Product
 def purchase_product(product_id:int, buyer_id:int, quantity:int):
-    
     # Create The nescessary queary's
     buyer = (User.get(User.user_id == buyer_id))
     product_id= (Product.get(Product.product_id == product_id))
     seller = (Product.select().where(Product.product_id == product_id))
-    for id in seller :
-        if id.product_owner != buyer and quantity <= id.quantity:
+    for id in seller:
+        if id.product_owner != buyer and quantity <= id.quantity :
             
             # Create records in Transaction table
             query = Transaction.create(
                 buyer = buyer_id,
-                # seller = seller,
                 product = product_id,
                 item_quantity = quantity)
             query.save()
-            
             # Update the quantity
             id.quantity -= quantity
             id.save()
-            return(f"{buyer.name} Purchased {id.product_name}")
-            
+            return(f"{buyer.name} Purchased {id.product_name}")   
+
+        
         elif id.product_owner == buyer:
             return('try another product please')    
         else:

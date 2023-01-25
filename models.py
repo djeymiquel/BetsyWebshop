@@ -35,6 +35,5 @@ ProductTag = Product.product_tags.get_through_model()
 class Transaction(BaseModel):
     transaction_id = AutoField()
     buyer = ForeignKeyField(User, field='user_id')
-    # seller = ForeignKeyField(Product)
     product = ForeignKeyField(Product, field='product_id')
     item_quantity = IntegerField()

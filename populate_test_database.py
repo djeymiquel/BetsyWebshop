@@ -59,7 +59,7 @@ print(add_product_to_catalog(
     description='soft couch',
     tag ='furniture',
     price=450.0,
-    qty=1))
+    qty=2))
 
 print(add_product_to_catalog(
     user_id=4,
