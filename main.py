@@ -15,7 +15,6 @@ def search(term:str):
         Product.description.contains(term)))
     search_list = [product.product_name for product in query]  
     return f"Product Name: {search_list}"
-# print(search(''))
 
 
 # 2. List User Products 
@@ -26,7 +25,6 @@ def list_user_products(user_id:int):
     product_list = [product.product_name for product in query]
     owner = [user.product_owner_id for user in query]
     return f"User: {set(owner)} | Item(s): {product_list}"
-# print(list_user_products(3))
 
    
 # 3. List Product Per Tag
