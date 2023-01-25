@@ -126,5 +126,5 @@ def remove_product(product_id:int):
 # print(list_user_products())
 # print(list_products_per_tag())
 # print(update_stock(1,14))
-print(purchase_product(3,2,1))
+# print(purchase_product(3,3,1))
 # print(remove_product())
