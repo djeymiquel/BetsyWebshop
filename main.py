@@ -32,12 +32,11 @@ def list_products_per_tag(tag_id:int):
     try:
         tag = Tag.get(Tag.tag_id == tag_id)
     except Tag.DoesNotExist:
-        return "No Tag found with ID: {}".format(tag_id)
+        return f"No Tag found with ID: {tag_id}"
     products = (Product
                 .select()
                 .join(ProductTag)
                 .join(Tag)
-                # .where(Tag.tag== tag.tag))
                 .where(Tag.tag_id == tag_id))
     product_list = [product.product_name for product in products]
     return f"Tag ID: {tag_id}  {product_list}"
@@ -85,6 +84,7 @@ def update_stock(product_id:int, new_quantity:int):
 
 # 6. Purchase Product
 def purchase_product(product_id:int, buyer_id:int, quantity:int):
+    
     # Create The nescessary queary's
     buyer = (User.get(User.user_id == buyer_id))
     product_id= (Product.get(Product.product_id == product_id))
@@ -103,7 +103,6 @@ def purchase_product(product_id:int, buyer_id:int, quantity:int):
             id.save()
             return(f"{buyer.name} Purchased {id.product_name}")   
 
-        
         elif id.product_owner == buyer:
             return('try another product please')    
         else:
