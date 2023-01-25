@@ -41,7 +41,7 @@ def list_products_per_tag(tag_id:int):
                 .where(Tag.tag_id== tag_id))
     product_list = [product.product_name for product in products]
     return f"Tag ID: {tag_id}  {product_list}"
-# print(list_products_per_tag(5))
+
 
 
 # 4. Add Product To Catalog
@@ -96,7 +96,7 @@ def purchase_product(product_id:int, buyer_id:int, quantity:int):
             # Create records in Transaction table
             query = Transaction.create(
                 buyer = buyer_id,
-                seller = seller,
+                # seller = seller,
                 product = product_id,
                 item_quantity = quantity)
             query.save()
@@ -109,7 +109,7 @@ def purchase_product(product_id:int, buyer_id:int, quantity:int):
         elif id.product_owner == buyer:
             return('try another product please')    
         else:
-            return(f"{id.product_name} is out of stock!")
+            return(f"{id.product_name} is not available!")
 
         
 # 7. Remove Product
@@ -126,5 +126,5 @@ def remove_product(product_id:int):
 # print(list_user_products())
 # print(list_products_per_tag())
 # print(update_stock(1,14))
-# print(purchase_product(1,3,4))
+print(purchase_product(3,2,1))
 # print(remove_product())

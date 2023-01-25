@@ -63,10 +63,10 @@ print(add_product_to_catalog(
 
 print(add_product_to_catalog(
     user_id=4,
-    product='table',
-    description='nice table',
-    tag ='furniture',
-    price=100.0,
+    product='Nike Airmax',
+    description='new shoes',
+    tag ='sneakers',
+    price=80.0,
     qty=2))
 
 print(add_product_to_catalog(

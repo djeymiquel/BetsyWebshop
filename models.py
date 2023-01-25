@@ -18,7 +18,7 @@ class User(BaseModel):
   
 class Tag(BaseModel):
     tag_id = AutoField()
-    tag = CharField()
+    tag = CharField(max_length=255)
     
 
 class Product(BaseModel):
@@ -35,6 +35,6 @@ ProductTag = Product.product_tags.get_through_model()
 class Transaction(BaseModel):
     transaction_id = AutoField()
     buyer = ForeignKeyField(User, field='user_id')
-    seller = ForeignKeyField(Product)
+    # seller = ForeignKeyField(Product)
     product = ForeignKeyField(Product, field='product_id')
     item_quantity = IntegerField()
